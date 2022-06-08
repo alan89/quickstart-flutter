@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'dart:developer';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -9,7 +10,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _firstnameController = TextEditingController();
   final TextEditingController _lastnameController = TextEditingController();
@@ -25,10 +26,11 @@ class _LoginPageState extends State<LoginPage> {
 
   Future<UserCredential?> _signUpWithEmailAndPassword() async {
     _setIsLoading();
+    log("Sign up with email and password");
     try {
       final _credential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: _usernameController.text,
+        email: _emailController.text,
         password: _passwordController.text,
       );
 
@@ -45,6 +47,9 @@ class _LoginPageState extends State<LoginPage> {
       if (e.code == 'weak-password') {
         // ...
       }
+      else {
+        log(e.code);
+      }
       _setIsLoading();
       return null;
     }
@@ -52,10 +57,10 @@ class _LoginPageState extends State<LoginPage> {
 
   Future<UserCredential?> _loginWithEmailAndPassword() async {
     _setIsLoading();
-
+    log("Login with email and password");
     try {
       return await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: _usernameController.text,
+        email: _emailController.text,
         password: _passwordController.text,
       );
     } on FirebaseAuthException catch (e) {
@@ -79,11 +84,11 @@ class _LoginPageState extends State<LoginPage> {
 
       /// These are two examples of several possible error messages from
       /// FirebaseAuth. Find the [complete list of error messages here.](https://firebase.google.com/docs/auth/admin/errors)
-      if (e.code == 'email-doesnt-exist') {
-        // tell use to sign up...
-      }
       if (e.code == 'wrong password') {
         // ...
+      }
+      else {
+        log(e.code);
       }
       _setIsLoading();
       return null;
@@ -112,7 +117,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       validator: (String? input) {
                         if (input == null || input.isEmpty) {
-                          return 'Please enter a username';
+                          return 'Please enter a valid email';
                         }
                         return null;
                       },
@@ -132,7 +137,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       validator: (String? input) {
                         if (input == null || input.isEmpty) {
-                          return 'Please enter a username';
+                          return 'Please enter a valid email';
                         }
                         return null;
                       },
@@ -144,14 +149,14 @@ class _LoginPageState extends State<LoginPage> {
                 child: ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 500.0),
                   child: TextFormField(
-                    controller: _usernameController,
+                    controller: _emailController,
                     decoration: const InputDecoration(
-                      label: Text('Username'),
+                      label: Text('Email'),
                       border: OutlineInputBorder(),
                     ),
                     validator: (String? input) {
                       if (input == null || input.isEmpty) {
-                        return 'Please enter a username';
+                        return 'Please enter a valid email';
                       }
                       return null;
                     },

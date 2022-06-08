@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'dart:developer';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -24,6 +25,12 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
+  Future<void> _signOut() async {
+    log("Signing Out");
+    _user = null;
+    await FirebaseAuth.instance.signOut();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,8 +40,18 @@ class _HomePageState extends State<HomePage> {
             ? Text('Welcome ${_user?.displayName}')
             : const Text('Welcome'),
       ),
-      body: const Center(
-        child: Text('New application incoming....'),
+      body: Center(
+        child: Column(
+          children: <Widget>[
+            Text('New application incoming....'),
+            RaisedButton(
+              onPressed: () async {
+                await _signOut();
+              },
+              child: Text('Log Out'),
+            ),
+          ],
+        ),
       ),
     );
   }

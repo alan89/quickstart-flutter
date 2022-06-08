@@ -48,3 +48,7 @@ app.*.map.json
 #Firebase project related
 .firebaserc
 /lib/firebase_options.dart
+/android/app/google-services.json
+/data-path/
+/ios/firebase_app_id_file.json
+/macos/firebase_app_id_file.json

@@ -24,7 +24,7 @@ you'll need to set up your Firebase console.
     - Click **Email/Password** and turn on the **Enable** switch, then click **Save**.
     - Under **Authorized Domains** click **Add Domain** and add `auth.example.com`.
 
-#### Google signin
+#### [Google signin](https://firebase.google.com/docs/auth/flutter/federated-auth#google)
 
 - Go to the [Firebase Console][fir-console] and navigate to your project:
     - Select the **Auth** panel and then click the **Sign In Method** tab.

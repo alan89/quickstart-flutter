@@ -19,15 +19,11 @@ class FacebookAuthTile extends StatelessWidget {
   }
 
   void signIn(BuildContext context) async {
-    // try {
     final userCredential = await signInWithFacebook();
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const HomePage()),
     );
-    // } catch (e) {
-    //   print(e);
-    // }
   }
 
   @override

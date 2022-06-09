@@ -50,6 +50,24 @@ you'll need to set up your Firebase console.
     - (Recomended) Follow the quick start guide to complete the configuration. 
     - Follow this document to update the `Facebook App ID` and `Facebook Client Token` in the app.  
 
+#### [Apple sign in](https://firebase.google.com/docs/auth/flutter/federated-auth#apple)
+
+As outlined in the docs, Sign in with Apple requires enabling the Sign In with Apple 
+[Capability](https://developer.apple.com/documentation/xcode/adding_capabilities_to_your_app) in 
+this quickstart's Xcode project.
+
+- Go to the [Firebase Console][fir-console] and navigate to your project:
+  - Select the **Auth** panel and then click the **Sign In Method** tab.
+  - Click **Add new provider** and select Apple.
+  - Turn on the **Enable** switch:
+    - You should add the ServiceID in case you want to use this feature for a web app.
+    - Add the Oauth Code Flow to support Android and Web apps. 
+  - Run the app on your device (preferably).
+    - NOTE: For iOS the flow is only available in physical devices
+  - IN teh application, choose Apple under Identity Providers to launch the Sign in with Apple flow 
+  - See the [Getting Started with Apple Sign In](https://firebase.google.com/docs/auth/ios/apple) 
+guide for more details.
+
 Support
 -------
 

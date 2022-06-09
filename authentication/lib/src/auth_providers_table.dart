@@ -1,5 +1,6 @@
 import 'package:authentication/src/facebook_auth.dart';
 import 'package:authentication/src/google_auth.dart';
+import 'package:authentication/src/apple_auth.dart';
 import 'package:authentication/src/home_page.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer';
@@ -35,7 +36,8 @@ class _AuthProvidersTableState extends State<AuthProvidersTable> {
         ),
         const ListTile(title: Text('Passwordless'), leading: Icon(Icons.key)),
         const GoogleAuthTile(),
-        const FacebookAuthTile()
+        const FacebookAuthTile(),
+        const AppleAuthTile(),
       ],
     );
   }

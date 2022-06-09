@@ -11,16 +11,44 @@ Getting Started
 
 - [Add Firebase to your Flutter Project](https://firebase.google.com/docs/flutter/setup).
 
-This example contains Email / Password login and signup using Firebase in a 
-Flutter app. In order to run the example, you'll need to set up your 
-Firebase console.
+This example shows how to use different auth providers to login and 
+signup using Firebase in a Flutter app. In order to run the example, 
+you'll need to set up your Firebase console.
 
-### Email/Password Setup
+### Auth providers
+
+#### Email/Password Setup
 
 - Go to the [Firebase Console][fir-console] and navigate to your project:
     - Select the **Auth** panel and then click the **Sign In Method** tab.
     - Click **Email/Password** and turn on the **Enable** switch, then click **Save**.
     - Under **Authorized Domains** click **Add Domain** and add `auth.example.com`.
+
+#### [Google sign in](https://firebase.google.com/docs/auth/flutter/federated-auth#google)
+
+- Go to the [Firebase Console][fir-console] and navigate to your project:
+    - Select the **Auth** panel and then click the **Sign In Method** tab.
+    - Click **Add new provider** and select Google.
+    - Turn on the **Enable** switch, then click **Save**.
+- Include the Google sign in plugin by running this command in a terminal
+  `flutter pub add google_sign_in`
+- Android
+    - A fingerprint will be needed. The step #3 of the "Before you begin" section in this
+      [document](https://firebase.google.com/docs/auth/android/google-signin#before_you_begin) provides more information on this.
+- IOS
+    - A reversed client ID has to be added in the URL Schemes. Follow this [document](https://firebase.google.com/docs/auth/ios/google-signin#2_implement_google_sign-in) for reference.
+
+#### [Facebook sign in](https://firebase.google.com/docs/auth/flutter/federated-auth#facebook)
+
+- Go to the [Firebase Console][fir-console] and navigate to your project:
+    - Select the **Auth** panel and then click the **Sign In Method** tab.
+    - Click **Add new provider** and select Facebook.
+    - Turn on the **Enable** switch, and add the App ID and App Secret.
+    - Copy the redirect URI and then click **Save**.
+    - In your Facebook app configuration, add `Facebook sign in`
+    - In the settings paste the redirect URI. 
+    - (Recomended) Follow the quick start guide to complete the configuration. 
+    - Follow this document to update the `Facebook App ID` and `Facebook Client Token` in the app.  
 
 Support
 -------

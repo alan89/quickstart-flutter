@@ -13,7 +13,7 @@ void main() async {
 
   // Both of the following lines are good for testing,
   // but can be removed for release builds
-  await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
+  //await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
   FirebaseAuth.instance.signOut();
 
   runApp(const AuthApp());

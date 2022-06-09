@@ -41,6 +41,7 @@ dependencies:
   firebase_crashlytics: ^2.8.1
   sign_in_with_apple: ^3.0.0
   crypto: ^3.0.1
+  twitter_login: ^4.2.3
 
 dev_dependencies:
   flutter_test:

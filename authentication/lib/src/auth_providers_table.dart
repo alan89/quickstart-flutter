@@ -1,4 +1,5 @@
 import 'package:authentication/src/facebook_auth.dart';
+import 'package:authentication/src/github_auth.dart';
 import 'package:authentication/src/google_auth.dart';
 import 'package:authentication/src/apple_auth.dart';
 import 'package:authentication/src/twitter_auth.dart';
@@ -65,6 +66,7 @@ class _AuthProvidersTableState extends State<AuthProvidersTable> {
         const AppleAuthTile(),
         const TwitterAuthTile(),
         const AnonymousAuthTile(),
+        const GithubAuthTile(),
       ],
     );
   }

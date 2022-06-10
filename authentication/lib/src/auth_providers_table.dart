@@ -3,6 +3,7 @@ import 'package:authentication/src/google_auth.dart';
 import 'package:authentication/src/apple_auth.dart';
 import 'package:authentication/src/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:authentication/src/anonymous.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer';
 
@@ -61,6 +62,7 @@ class _AuthProvidersTableState extends State<AuthProvidersTable> {
         const GoogleAuthTile(),
         const FacebookAuthTile(),
         const AppleAuthTile(),
+        const AnonymousAuthTile(),
       ],
     );
   }

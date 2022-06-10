@@ -43,8 +43,10 @@ class _HomePageState extends State<HomePage> {
         ListView(
           physics: const BouncingScrollPhysics(),
           children: [
-            const SizedBox(height: 24),
-            buildImage(_user?.photoURL ?? ""),
+            if (_user?.photoURL != null)
+              const SizedBox(height: 24),
+            if (_user?.photoURL != null)
+              buildImage(_user?.photoURL ?? ""),
             const SizedBox(height: 24),
             buildUserInfo(_user),
             const SizedBox(height: 24),
@@ -65,7 +67,7 @@ class _HomePageState extends State<HomePage> {
 
   // Widget to show an image
   Widget buildImage(String imagePath) {
-    final image = NetworkImage("https://pbs.twimg.com/profile_images/1511717604808867841/SKY0iAUJ_400x400.jpg");
+    final image = NetworkImage(imagePath);
 
     return ClipOval(
       child: Material(
@@ -114,26 +116,26 @@ class _HomePageState extends State<HomePage> {
       ),
       const SizedBox(height: 15),
       Text(
-        user?.emailVerified != null ?
-        "The email is verified: " + user!.emailVerified.toString() :
+        user != null ?
+        "The email is verified: " + user.emailVerified.toString() :
         "email Verification",
         style: TextStyle(color: Colors.grey, fontSize: 20),
       ),
       const SizedBox(height: 15),
       Text(
-        user?.isAnonymous != null ?
-          "Is Anonymous: " + user!.isAnonymous.toString() :
+        user != null ?
+          "Is Anonymous: " + user.isAnonymous.toString():
           "Is Anonymous",
         style: TextStyle(color: Colors.grey, fontSize: 20),
       ),
       const SizedBox(height: 15),
       Text(
-        user?.providerData.toString() ?? "Provider Data",
+        user.providerData.toString(),
         style: TextStyle(color: Colors.grey),
       ),
       const SizedBox(height: 15),
       Text(
-        user?.metadata.toString() ?? "Metadata",
+        user.metadata.toString(),
         style: TextStyle(color: Colors.grey),
       ),
     ],

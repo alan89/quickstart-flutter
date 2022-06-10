@@ -40,10 +40,13 @@ app.*.symbols
 # Obfuscation related
 app.*.map.json
 
-# Android Studio will place build artifacts here
+# Android Studio will place build artifacts herex
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# iOS files
+/ios/Runner/GoogleService-info.plist
 
 #Firebase project related
 .firebaserc

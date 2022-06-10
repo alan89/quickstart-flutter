@@ -1,6 +1,7 @@
 import 'package:authentication/src/facebook_auth.dart';
 import 'package:authentication/src/google_auth.dart';
 import 'package:authentication/src/apple_auth.dart';
+import 'package:authentication/src/twitter_auth.dart';
 import 'package:authentication/src/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:authentication/src/anonymous.dart';
@@ -43,7 +44,7 @@ class _AuthProvidersTableState extends State<AuthProvidersTable> {
           title: Text('Email/Password'),
           leading: Icon(Icons.person),
           onTap: () {
-            if (_user == null){
+            if (_user == null) {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const LoginPage()),
@@ -62,6 +63,7 @@ class _AuthProvidersTableState extends State<AuthProvidersTable> {
         const GoogleAuthTile(),
         const FacebookAuthTile(),
         const AppleAuthTile(),
+        const TwitterAuthTile(),
         const AnonymousAuthTile(),
       ],
     );

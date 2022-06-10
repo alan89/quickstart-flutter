@@ -107,6 +107,7 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              // FirstName controller, only for registering new users
               if (_isSigningUp)
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -127,6 +128,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
+              // LastName controller, only for registering new users
               if (_isSigningUp)
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -147,6 +149,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
+              // Email Controller
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ConstrainedBox(
@@ -166,6 +169,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ),
+              // Password Controller
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ConstrainedBox(
@@ -186,6 +190,8 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ),
+              // Single button, the functionality change for registering new
+              // users and log in existing one
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 30.0),
                 child: ElevatedButton(
@@ -195,7 +201,13 @@ class _LoginPageState extends State<LoginPage> {
                         : await _loginWithEmailAndPassword();
 
                     if (FirebaseAuth.instance.currentUser != null) {
-                      Navigator.of(context).popAndPushNamed('/');
+                      Navigator.of(context).pop();
+                      final scaffold = ScaffoldMessenger.of(context);
+                      scaffold.showSnackBar(
+                        const SnackBar(
+                          content: Text('User logged in correctly'),
+                        ),
+                      );
                     }
                   },
                   child: _isLoading

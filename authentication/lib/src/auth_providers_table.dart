@@ -1,7 +1,8 @@
 import 'package:authentication/src/facebook_auth.dart';
 import 'package:authentication/src/google_auth.dart';
 import 'package:authentication/src/apple_auth.dart';
-import 'package:authentication/src/home_page.dart';
+import 'package:authentication/src/login_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer';
 
@@ -13,8 +14,22 @@ class AuthProvidersTable extends StatefulWidget {
 }
 
 class _AuthProvidersTableState extends State<AuthProvidersTable> {
+  User? _user;
+
   @override
   void initState() {
+    // Detect when a user signs in (or out, when sign out is implemented)
+    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+      if (user != null) {
+        setState(() {
+          _user = FirebaseAuth.instance.currentUser!;
+        });
+      } else {
+        setState(() {
+          _user = null;
+        });
+      }
+    });
     super.initState();
   }
 
@@ -27,11 +42,19 @@ class _AuthProvidersTableState extends State<AuthProvidersTable> {
           title: Text('Email/Password'),
           leading: Icon(Icons.person),
           onTap: () {
-            log("Nav to a new window");
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => HomePage()),
-            );
+            if (_user == null){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const LoginPage()),
+              );
+            } else {
+              final scaffold = ScaffoldMessenger.of(context);
+              scaffold.showSnackBar(
+                const SnackBar(
+                  content: Text('There is a user currently logged in'),
+                ),
+              );
+            }
           },
         ),
         const ListTile(title: Text('Passwordless'), leading: Icon(Icons.key)),

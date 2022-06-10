@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer';
+import 'dart:io';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -20,6 +21,10 @@ class _HomePageState extends State<HomePage> {
         setState(() {
           _user = FirebaseAuth.instance.currentUser!;
         });
+      } else {
+        setState(() {
+          _user = null;
+        });
       }
     });
     super.initState();
@@ -34,25 +39,104 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: _user != null
-            ? Text('Welcome ${_user?.displayName}')
-            : const Text('Welcome'),
-      ),
-      body: Center(
-        child: Column(
-          children: <Widget>[
-            Text('New application incoming....'),
-            RaisedButton(
+      body: _user != null ?
+        ListView(
+          physics: const BouncingScrollPhysics(),
+          children: [
+            const SizedBox(height: 24),
+            buildImage(_user?.photoURL ?? ""),
+            const SizedBox(height: 24),
+            buildUserInfo(_user),
+            const SizedBox(height: 24),
+            ElevatedButton(
               onPressed: () async {
                 await _signOut();
               },
               child: Text('Log Out'),
             ),
           ],
+        )
+      : const Center(
+        child: Text('You will see the user information in this page once you are logged in'),
+      )
+    );
+  }
+
+
+  // Widget to show an image
+  Widget buildImage(String imagePath) {
+    final image = NetworkImage("https://pbs.twimg.com/profile_images/1511717604808867841/SKY0iAUJ_400x400.jpg");
+
+    return ClipOval(
+      child: Material(
+        color: Colors.transparent,
+        child: Ink.image(
+          image: image,
+          fit: BoxFit.contain,
+          width: 128,
+          height: 128,
+          //child: InkWell(onTap: ()={}),
         ),
       ),
     );
   }
+
+  Widget buildUserInfo(User? user) => Column(
+    children: [
+      TextButton(
+          onPressed: (){
+            final scaffold = ScaffoldMessenger.of(context);
+            scaffold.showSnackBar(
+              const SnackBar(
+                content: Text('pressed'),
+              ),
+            );
+          },
+          child: Text(
+            user?.displayName ?? "Display name",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+          )
+      ),
+      const SizedBox(height: 15),
+      Text(
+        user?.email ?? "email",
+        style: TextStyle(color: Colors.grey, fontSize: 20),
+      ),
+      const SizedBox(height: 15),
+      Text(
+        user?.phoneNumber ?? "No phone number",
+        style: TextStyle(color: Colors.grey, fontSize: 20),
+      ),
+      const SizedBox(height: 15),
+      Text(
+        "UID: " + user!.uid,
+        style: TextStyle(color: Colors.grey, fontSize: 20),
+      ),
+      const SizedBox(height: 15),
+      Text(
+        user?.emailVerified != null ?
+        "The email is verified: " + user!.emailVerified.toString() :
+        "email Verification",
+        style: TextStyle(color: Colors.grey, fontSize: 20),
+      ),
+      const SizedBox(height: 15),
+      Text(
+        user?.isAnonymous != null ?
+          "Is Anonymous: " + user!.isAnonymous.toString() :
+          "Is Anonymous",
+        style: TextStyle(color: Colors.grey, fontSize: 20),
+      ),
+      const SizedBox(height: 15),
+      Text(
+        user?.providerData.toString() ?? "Provider Data",
+        style: TextStyle(color: Colors.grey),
+      ),
+      const SizedBox(height: 15),
+      Text(
+        user?.metadata.toString() ?? "Metadata",
+        style: TextStyle(color: Colors.grey),
+      ),
+    ],
+  );
+
 }

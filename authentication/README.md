@@ -17,7 +17,7 @@ you'll need to set up your Firebase console.
 
 ### Auth providers
 
-#### Email/Password Setup
+#### [Email/Password Setup](https://firebase.google.com/docs/auth/flutter/password-auth)
 
 - Go to the [Firebase Console][fir-console] and navigate to your project:
     - Select the **Auth** panel and then click the **Sign In Method** tab.
@@ -88,7 +88,8 @@ guide for more details.
     - You should add your Twitter app `API Key` and `API Secret`.
   - The Github sign in plugin may cause Android issues. Follow this [document](https://docs.flutter.dev/development/androidx-migration)
   
-### Anonymous Authentication
+#### [Anonymous Authentication](https://firebase.google.com/docs/auth/flutter/anonymous-auth)
+
 Start by going to the [Firebase Console](https://console.firebase.google.com) and navigate to your project:
 - Select the **Auth** panel and then click the **Sign In Method** tab.
 - Click **Anonymous** and turn on the **Enable** switch, then click **Save**.
@@ -96,11 +97,16 @@ Start by going to the [Firebase Console](https://console.firebase.google.com) an
 - Choose **Anonymous Authentication**  to launch the **Anonymous Sign In** flow
   See the official [Firebase docs for anonymous authentication](https://firebase.google.com/docs/auth/flutter/anonymous-auth) for more info!
 
-### Phone Number
+#### [Phone Number](https://firebase.google.com/docs/auth/flutter/phone-auth)
 
-When Firebase Auth uses Phone Number authentication, Auth will attempt to send a silent Apple Push Notification (APN) to the device to confirm that the phone number being used is associated with the device. If APNs (which, like Sign In with Apple, are a [capability](https://developer.apple.com/documentation/xcode/adding_capabilities_to_your_app) you can enable in Xcode or on the Apple Developer Console) are not enabled or configured correctly, Auth will instead present a web view with a reCAPTCHA verification flow.
+When Firebase Auth uses Phone Number authentication, Auth will attempt to send a silent Apple Push 
+Notification (APN) to the device to confirm that the phone number being used is associated with the 
+device. If APNs (which, like Sign In with Apple, are a 
+[capability](https://developer.apple.com/documentation/xcode/adding_capabilities_to_your_app) you 
+can enable in Xcode or on the Apple Developer Console) are not enabled or configured correctly, 
+Auth will instead present a web view with a reCAPTCHA verification flow.
 
-#### Start by going to the [Firebase Console](https://console.firebase.google.com) and navigate to your project:
+Start by going to the [Firebase Console](https://console.firebase.google.com) and navigate to your project:
 - Select the **Auth** panel and then click the **Sign In Method** tab.
 - Click **Phone** and turn on the **Enable** switch, then click **Save**.
 - Run the app on your device or simulator.

@@ -1,3 +1,4 @@
+import 'package:authentication/src/custom_auth.dart';
 import 'package:authentication/src/facebook_auth.dart';
 import 'package:authentication/src/github_auth.dart';
 import 'package:authentication/src/google_auth.dart';
@@ -68,7 +69,11 @@ class _AuthProvidersTableState extends State<AuthProvidersTable> {
         const TwitterAuthTile(),
         const AnonymousAuthTile(),
         const GithubAuthTile(),
+<<<<<<< HEAD
         const PhoneAuthTile(),
+=======
+        const CustomAuthTile()
+>>>>>>> 81493a3bbca7605b327447a3471105b787b43c34
       ],
     );
   }

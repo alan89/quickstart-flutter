@@ -13,6 +13,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   User? _user;
 
+  final TextEditingController _displayNameController = TextEditingController();
+
   @override
   void initState() {
     // Detect when a user signs in (or out, when sign out is implemented)
@@ -51,6 +53,61 @@ class _HomePageState extends State<HomePage> {
             buildUserInfo(_user),
             const SizedBox(height: 24),
             ElevatedButton(
+              onPressed: () {
+                //show dialog to take input from the user
+                showDialog(
+                    context: context,
+                    barrierDismissible: false,
+                    builder: (context) => AlertDialog(
+                      title: Text("Edit Photo URL"),
+                      content: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          TextField(
+                            controller: _displayNameController,
+                          ),
+                        ],
+                      ),
+                      actions: <Widget>[
+                        TextButton(
+                          child: Text("Save"),
+                          onPressed: () async {
+                            FirebaseAuth auth = FirebaseAuth.instance;
+                            await auth.currentUser!.updatePhotoURL(_displayNameController.text);
+                            setState((){
+                              _user = FirebaseAuth.instance.currentUser!;
+                            });
+                            Navigator.of(context).pop();
+                            final scaffold = ScaffoldMessenger.of(context);
+                            scaffold.showSnackBar(
+                              const SnackBar(
+                                content: Text('Photo URL updated correctly'),
+                              ),
+                            );
+                          },
+                        )
+                      ],
+                    )
+                );
+              },
+              child: Text('Edit Photo URL'),
+            ),
+            const SizedBox(height: 8),
+            ElevatedButton(
+              onPressed: () async {
+                FirebaseAuth auth = FirebaseAuth.instance;
+                await auth.currentUser!.sendEmailVerification();
+                final scaffold = ScaffoldMessenger.of(context);
+                scaffold.showSnackBar(
+                  const SnackBar(
+                    content: Text('Email sent correctly'),
+                  ),
+                );
+              },
+              child: const Text('Send Verification Email'),
+            ),
+            const SizedBox(height: 8),
+            ElevatedButton(
               onPressed: () async {
                 await _signOut();
               },
@@ -87,11 +144,40 @@ class _HomePageState extends State<HomePage> {
     children: [
       TextButton(
           onPressed: (){
-            final scaffold = ScaffoldMessenger.of(context);
-            scaffold.showSnackBar(
-              const SnackBar(
-                content: Text('pressed'),
-              ),
+            //show dialog to take input from the user
+            showDialog(
+                context: context,
+                barrierDismissible: false,
+                builder: (context) => AlertDialog(
+                  title: Text("Edit Display Name"),
+                  content: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      TextField(
+                        controller: _displayNameController,
+                      ),
+                    ],
+                  ),
+                  actions: <Widget>[
+                    TextButton(
+                      child: Text("Save"),
+                      onPressed: () async {
+                        FirebaseAuth auth = FirebaseAuth.instance;
+                        await auth.currentUser!.updateDisplayName(_displayNameController.text);
+                        setState((){
+                          _user = FirebaseAuth.instance.currentUser!;
+                        });
+                        Navigator.of(context).pop();
+                        final scaffold = ScaffoldMessenger.of(context);
+                        scaffold.showSnackBar(
+                          const SnackBar(
+                            content: Text('User display name updated correctly'),
+                          ),
+                        );
+                      },
+                    )
+                  ],
+                )
             );
           },
           child: Text(
@@ -100,9 +186,48 @@ class _HomePageState extends State<HomePage> {
           )
       ),
       const SizedBox(height: 15),
-      Text(
-        user?.email ?? "email",
-        style: TextStyle(color: Colors.grey, fontSize: 20),
+      TextButton(
+        onPressed: (){
+          //show dialog to take input from the user
+          showDialog(
+              context: context,
+              barrierDismissible: false,
+              builder: (context) => AlertDialog(
+                title: Text("Edit Email"),
+                content: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    TextField(
+                      controller: _displayNameController,
+                    ),
+                  ],
+                ),
+                actions: <Widget>[
+                  TextButton(
+                    child: Text("Save"),
+                    onPressed: () async {
+                      FirebaseAuth auth = FirebaseAuth.instance;
+                      await auth.currentUser!.updateEmail(_displayNameController.text);
+                      setState((){
+                        _user = FirebaseAuth.instance.currentUser!;
+                      });
+                      Navigator.of(context).pop();
+                      final scaffold = ScaffoldMessenger.of(context);
+                      scaffold.showSnackBar(
+                        const SnackBar(
+                          content: Text('User email updated correctly'),
+                        ),
+                      );
+                    },
+                  )
+                ],
+              )
+          );
+        },
+        child: Text(
+          user?.email ?? "email",
+          style: TextStyle(color: Colors.grey, fontSize: 20),
+        )
       ),
       const SizedBox(height: 15),
       Text(

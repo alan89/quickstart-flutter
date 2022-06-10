@@ -68,6 +68,14 @@ this quickstart's Xcode project.
   - See the [Getting Started with Apple Sign In](https://firebase.google.com/docs/auth/ios/apple) 
 guide for more details.
 
+### Anonymous Authentication
+Start by going to the [Firebase Console](https://console.firebase.google.com) and navigate to your project:
+- Select the **Auth** panel and then click the **Sign In Method** tab.
+- Click **Anonymous** and turn on the **Enable** switch, then click **Save**.
+- Run the app on your device or simulator.
+- Choose **Anonymous Authentication**  to launch the **Anonymous Sign In** flow
+  See the official [Firebase docs for anonymous authentication](https://firebase.google.com/docs/auth/ios/anonymous-auth) for more info!
+
 Support
 -------
 

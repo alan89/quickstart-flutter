@@ -15,30 +15,19 @@ class AuthApp extends StatelessWidget {
           appBar: AppBar(
             bottom: const TabBar(
                 tabs: [
-                  Tab(icon: Icon(Icons.person_add)),
-                  Tab(icon: Icon(Icons.person))
+                  Tab(icon: Icon(Icons.person_add), text: "Providers"),
+                  Tab(icon: Icon(Icons.person), text: "Current User")
                 ]),
             title: const Text("Firebase Auth"),
           ),
           body: const TabBarView(
               children: [
                 AuthProvidersTable(),
-                Icon(Icons.person)
+                HomePage()
               ]),
         ),
       ),
     );
   }
 
-
-  // Previous loading system
-  /*Widget build(BuildContext context) {
-    return MaterialApp(
-      initialRoute: '/login',
-      routes: {
-        '/login': (context) => const LoginPage(),
-        '/': (context) => const HomePage(),
-      },
-    );
-  }*/
 }

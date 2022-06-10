@@ -6,6 +6,7 @@ import 'package:authentication/src/twitter_auth.dart';
 import 'package:authentication/src/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:authentication/src/anonymous.dart';
+import 'package:authentication/src/phone_auth.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer';
 
@@ -67,6 +68,7 @@ class _AuthProvidersTableState extends State<AuthProvidersTable> {
         const TwitterAuthTile(),
         const AnonymousAuthTile(),
         const GithubAuthTile(),
+        const PhoneAuthTile(),
       ],
     );
   }

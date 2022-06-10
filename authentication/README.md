@@ -87,16 +87,26 @@ guide for more details.
   - Turn on the **Enable** switch:
     - You should add your Twitter app `API Key` and `API Secret`.
   - The Github sign in plugin may cause Android issues. Follow this [document](https://docs.flutter.dev/development/androidx-migration)
-
-=======
+  
 ### Anonymous Authentication
 Start by going to the [Firebase Console](https://console.firebase.google.com) and navigate to your project:
 - Select the **Auth** panel and then click the **Sign In Method** tab.
 - Click **Anonymous** and turn on the **Enable** switch, then click **Save**.
 - Run the app on your device or simulator.
 - Choose **Anonymous Authentication**  to launch the **Anonymous Sign In** flow
-  See the official [Firebase docs for anonymous authentication](https://firebase.google.com/docs/auth/ios/anonymous-auth) for more info!
+  See the official [Firebase docs for anonymous authentication](https://firebase.google.com/docs/auth/flutter/anonymous-auth) for more info!
 
+### Phone Number
+
+When Firebase Auth uses Phone Number authentication, Auth will attempt to send a silent Apple Push Notification (APN) to the device to confirm that the phone number being used is associated with the device. If APNs (which, like Sign In with Apple, are a [capability](https://developer.apple.com/documentation/xcode/adding_capabilities_to_your_app) you can enable in Xcode or on the Apple Developer Console) are not enabled or configured correctly, Auth will instead present a web view with a reCAPTCHA verification flow.
+
+#### Start by going to the [Firebase Console](https://console.firebase.google.com) and navigate to your project:
+- Select the **Auth** panel and then click the **Sign In Method** tab.
+- Click **Phone** and turn on the **Enable** switch, then click **Save**.
+- Run the app on your device or simulator.
+- Choose **Phone Number**  to launch the **Phone Number Authentication** flow
+- After entering a phone number, please wait roughly 5 seconds to allow Firebase Auth to present the necessary flow.
+  See the official [Firebase docs for phone authentication](https://firebase.google.com/docs/auth/flutter/phone-auth) for more info!
 
 Support
 -------

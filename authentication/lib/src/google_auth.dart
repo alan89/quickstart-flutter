@@ -1,5 +1,6 @@
 import 'package:authentication/src/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -36,7 +37,7 @@ class GoogleAuthTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       title: const Text('Google'),
-      leading: const Icon(Icons.android),
+      leading: const FaIcon(FontAwesomeIcons.google),
       onTap: () => signIn(context),
     );
   }

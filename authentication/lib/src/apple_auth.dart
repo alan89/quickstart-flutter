@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:math';
 import 'package:crypto/crypto.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 import 'package:authentication/src/home_page.dart';
@@ -54,7 +55,7 @@ class AppleAuthTile extends StatelessWidget {
     // not match the nonce in `appleCredential.identityToken`, sign in will fail.
     try {
       return await FirebaseAuth.instance.signInWithCredential(oauthCredential);
-    } on FirebaseAuthException catch  (e) {
+    } on FirebaseAuthException catch (e) {
       print('Failed with error code: ${e.code}');
       print(e.message);
       return null;
@@ -69,7 +70,7 @@ class AppleAuthTile extends StatelessWidget {
         context,
         MaterialPageRoute(builder: (context) => const HomePage()),
       );
-    } on FirebaseAuthException catch (e){
+    } on FirebaseAuthException catch (e) {
       print('Failed with error code: ${e.code}');
       print(e.message);
     }
@@ -79,7 +80,7 @@ class AppleAuthTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       title: const Text('Apple'),
-      leading: const Icon(Icons.apple),
+      leading: const FaIcon(FontAwesomeIcons.apple),
       onTap: () => signIn(context),
     );
   }

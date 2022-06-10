@@ -2,6 +2,7 @@ import 'package:authentication/src/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class FacebookAuthTile extends StatelessWidget {
   const FacebookAuthTile({Key? key}) : super(key: key);
@@ -30,7 +31,7 @@ class FacebookAuthTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       title: const Text('Facebook'),
-      leading: const Icon(Icons.facebook),
+      leading: const FaIcon(FontAwesomeIcons.facebookF),
       onTap: () => signIn(context),
     );
   }

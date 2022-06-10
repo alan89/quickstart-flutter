@@ -1,6 +1,7 @@
 import 'package:authentication/src/credentials.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:twitter_login/twitter_login.dart';
 
 import 'home_page.dart';
@@ -41,8 +42,8 @@ class TwitterAuthTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: const Text('Google'),
-      leading: const Icon(Icons.android),
+      title: const Text('Twitter'),
+      leading: const FaIcon(FontAwesomeIcons.twitter),
       onTap: () => signIn(context),
     );
   }

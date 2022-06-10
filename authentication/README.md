@@ -68,6 +68,18 @@ this quickstart's Xcode project.
   - See the [Getting Started with Apple Sign In](https://firebase.google.com/docs/auth/ios/apple) 
 guide for more details.
 
+#### [Twitter sign in](https://firebase.google.com/docs/auth/flutter/federated-auth#twitter)
+
+- Go to the [Firebase Console][fir-console] and navigate to your project:
+  - Select the **Auth** panel and then click the **Sign In Method** tab.
+  - Click **Add new provider** and select Twitter.
+  - Turn on the **Enable** switch:
+    - You should add your Twitter app `API Key` and `API Secret`.
+  - When providing the configuration in the code, you may need to provide a schema instead of redirect URI.
+    Check this [video](https://youtu.be/pQh-rskvUWA?t=967) for reference.
+
+
+
 Support
 -------
 

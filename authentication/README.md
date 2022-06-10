@@ -79,6 +79,15 @@ guide for more details.
   - When providing the configuration in the code, you may need to provide a schema instead of redirect URI.
     Check this [video](https://youtu.be/pQh-rskvUWA?t=967) for reference.
 
+#### [Github sign in](https://firebase.google.com/docs/auth/flutter/federated-auth#github)
+
+- Go to the [Firebase Console][fir-console] and navigate to your project:
+  - Select the **Auth** panel and then click the **Sign In Method** tab.
+  - Click **Add new provider** and select Github.
+  - Turn on the **Enable** switch:
+    - You should add your Twitter app `API Key` and `API Secret`.
+  - The Github sign in plugin may cause Android issues. Follow this [document](https://docs.flutter.dev/development/androidx-migration)
+
 =======
 ### Anonymous Authentication
 Start by going to the [Firebase Console](https://console.firebase.google.com) and navigate to your project:
